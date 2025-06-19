@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paulo Victor - 39 Anos de Sabedoria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #001f3f;
+            --gold: #D4AF37;
+            --rust: #8B0000;
+            --parchment: #F5F5DC;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--parchment);
+            color: var(--navy);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504472478235-9bc48ba70e4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            margin: 0;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .quote {
+            font-size: 1.8rem;
+            font-style: italic;
+            text-align: center;
+            margin: 60px auto;
+            max-width: 800px;
+            position: relative;
+            color: var(--rust);
+        }
+        
+        .quote:before, .quote:after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.5;
+        }
+        
+        .philosopher {
+            display: block;
+            text-align: right;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .map-container {
+            position: relative;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1534237886190-ced735ca4b73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            margin: 60px 0;
+        }
+        
+        .country-marker {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .country-marker:hover {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+        
+        .china { top: 35%; left: 75%; }
+        .iran { top: 40%; left: 65%; }
+        .russia { top: 25%; left: 70%; }
+        
+        .country-info {
+            display: none;
+            position: absolute;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            z-index: 10;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--gold);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background-color: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+        }
+        
+        .sailboat {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            bottom: 20px;
+            left: 0;
+            animation: sail 30s linear infinite;
+        }
+        
+        @keyframes sail {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(calc(100vw + 100px)); }
+        }
+
+        /* CSS para a Árvore da Vida */
+        .tree-container {
+            position: relative;
+            height: 800px; /* Ajuste a altura conforme necessário */
+            margin: 50px auto;
+            width: 90%;
+            max-width: 800px; /* Adicionado para controle de largura em telas grandes */
+            background: url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            background-repeat: no-repeat;
+            background-position: center bottom; /* Ajuste para o background da árvore */
+        }
+
+        .tree-root, .tree-trunk, .tree-branch {
+            position: absolute;
+            background-color: #5E2C04;
+            border-radius: 10px;
+        }
+
+        .tree-root {
+            width: 100px;
+            height: 50px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1; /* Garante que as raízes fiquem por baixo */
+        }
+
+        .tree-trunk {
+            width: 60px;
+            height: 200px;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .tree-branch {
+            width: 2px; /* Espessura dos galhos */
+            height: 150px;
+            background: linear-gradient(to right, #5E2C04, #8B4513);
+            transform-origin: bottom center; /* Ponto de rotação na base */
+            z-index: 1;
+        }
+
+        .tree-branch.left {
+            transform: translateX(-50%) rotate(-30deg); /* Ajuste para centralizar e rotacionar */
+            left: 40%; /* Ajuste para posicionamento */
+            bottom: 150px;
+            height: 200px; /* Aumenta o tamanho para melhor visualização */
+        }
+
+        .tree-branch.right {
+            transform: translateX(-50%) rotate(30deg); /* Ajuste para centralizar e rotacionar */
+            left: 60%; /* Ajuste para posicionamento */
+            bottom: 150px;
+            height: 200px; /* Aumenta o tamanho para melhor visualização */
+        }
+
+        .tree-branch.center {
+            height: 100px;
+            bottom: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tree-node {
+            position: absolute;
+            width: 180px;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: 2; /* Garante que os nós fiquem por cima dos galhos */
+        }
+
+        .tree-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            min-height: 90px; /* Garante altura mínima para conteúdo similar */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tree-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .tree-node.dream .tree-content {
+            background-color: var(--gold);
+            color: var(--navy);
+        }
+
+        /* Posicionamento dos nós */
+        .tree-node.root-node { top: 90%; left: 50%; }
+        .tree-node.trunk-node { top: 70%; left: 50%; }
+        .tree-node.branch-left-node { top: 45%; left: 30%; } /* Ajustado */
+        .tree-node.branch-right-node { top: 45%; left: 70%; } /* Ajustado */
+        .tree-node.branch-center-node { top: 25%; left: 50%; } /* Ajustado */
+        
+        .tree-node.dream-1 { top: 10%; left: 20%; } /* Ajustado */
+        .tree-node.dream-2 { top: 10%; left: 80%; } /* Ajustado */
+        .tree-node.dream-3 { top: -5%; left: 50%; } /* Ajustado para topo */
+
+        .tree-fruits {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .tree-fruits .tree-node {
+            top: unset; /* Remove posicionamento herdado */
+            left: unset; /* Remove posicionamento herdado */
+        }
+
+        /* Efeito de brilho para os frutos */
+        .tree-node.dream .tree-content::before {
+            content: "✨";
+            position: absolute;
+            font-size: 2rem;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+
+        .tree-quote {
+            text-align: center;
+            font-style: italic;
+            margin-top: 40px;
+            font-size: 1.2rem;
+            color: var(--rust);
+            padding-bottom: 40px;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            .quote {
+                font-size: 1.5rem;
+            }
+            .tree-container {
+                height: 600px;
+            }
+            .tree-trunk {
+                height: 150px;
+                bottom: 30px;
+            }
+            .tree-branch {
+                height: 120px;
+                bottom: 120px;
+            }
+            .tree-branch.left {
+                left: 35%;
+                height: 150px;
+            }
+            .tree-branch.right {
+                left: 65%;
+                height: 150px;
+            }
+            .tree-branch.center {
+                height: 80px;
+                bottom: 200px;
+            }
+
+            .tree-node {
+                width: 150px;
+            }
+            .tree-content {
+                padding: 10px;
+            }
+
+            .tree-node.branch-left-node { top: 40%; left: 25%; }
+            .tree-node.branch-right-node { top: 40%; left: 75%; }
+            .tree-node.branch-center-node { top: 20%; left: 50%; }
+
+            .tree-node.dream-1 { top: 5%; left: 15%; }
+            .tree-node.dream-2 { top: 5%; left: 85%; }
+            .tree-node.dream-3 { top: -10%; left: 50%; } /* Mais para cima */
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .quote {
+                font-size: 1.2rem;
+            }
+            .tree-container {
+                height: 500px;
+            }
+            .tree-trunk {
+                height: 100px;
+                bottom: 20px;
+            }
+            .tree-branch {
+                height: 80px;
+                bottom: 80px;
+            }
+            .tree-branch.left {
+                left: 30%;
+                height: 100px;
+            }
+            .tree-branch.right {
+                left: 70%;
+                height: 100px;
+            }
+            .tree-branch.center {
+                height: 60px;
+                bottom: 150px;
+            }
+            .tree-node {
+                width: 120px;
+            }
+            .tree-content {
+                font-size: 0.8rem;
+                min-height: 70px;
+            }
+
+            .tree-node.branch-left-node { top: 35%; left: 20%; }
+            .tree-node.branch-right-node { top: 35%; left: 80%; }
+            .tree-node.branch-center-node { top: 15%; left: 50%; }
+
+            .tree-node.dream-1 { top: 0%; left: 10%; }
+            .tree-node.dream-2 { top: 0%; left: 90%; }
+            .tree-node.dream-3 { top: -15%; left: 50%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Paulo Victor</h1>
+        <div class="subtitle">39 Anos de Sabedoria Náutica</div>
+        <div class="scroll-down">↓</div>
+    </header>
+    
+    <div class="container">
+        <section class="section">
+            <div class="quote">
+                "Aquele que tem um porquê para viver pode suportar quase qualquer como."
+                <span class="philosopher">— Friedrich Nietzsche</span>
+            </div>
+            
+            <div class="quote">
+                "O navio que navega em direção a muitos portos nunca chegará a lugar nenhum."
+                <span class="philosopher">— Platão</span>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 style="text-align: center; font-family: 'Cinzel', serif; color: var(--rust);">Rotas do Conhecimento</h2>
+            <div class="map-container">
+                <div class="country-marker china"></div>
+                <div class="country-marker iran"></div>
+                <div class="country-marker russia"></div>
+                
+                <div class="country-info" id="china-info">
+                    <h3>China</h3>
+                    <p>"A jornada de mil milhas começa com um único passo." - Lao Tzu</p>
+                </div>
+                <div class="country-info" id="iran-info">
+                    <h3>Irã</h3>
+                    <p>"Seja a mudança que você deseja ver no mundo." - Mahatma Gandhi (adaptado)</p>
+                </div>
+                <div class="country-info" id="russia-info">
+                    <h3>Rússia</h3>
+                    <p>"A verdadeira sabedoria reside em saber que você não sabe nada." - Sócrates (adaptado)</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 style="text-align: center; font-family: 'Cinzel', serif; color: var(--rust);">39 Ventos Favoráveis</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1985</h3>
+                        <p>Nasce um explorador, filósofo e futuro navegador.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2005</h3>
+                        <p>Início da jornada acadêmica em Direito.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2010</h3>
+                        <p>Ingresso na Polícia Civil como Investigador.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2015</h3>
+                        <p>Aprovação e início como Perito Criminal Federal.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2020</h3>
+                        <p>Momento de transição: Separação de Camila, mãe de Vinicius e Luiza.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2025</h3>
+                        <p>O começo de novos sonhos e rotas a explorar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        ---
+
+        <section class="section">
+            <h2 style="text-align: center; font-family: 'Cinzel', serif; color: var(--rust);">Árvore da Vida</h2>
+            
+            <div class="tree-container">
+                <div class="tree-node tree-root-node">
+                    <div class="tree-content">
+                        <h3>Fundações</h3>
+                        <p>Formado em Direito<br>Bilíngue (Inglês/Espanhol)<br>Valores familiares</p>
+                    </div>
+                </div>
+                
+                <div class="tree-node trunk-node">
+                    <div class="tree-content">
+                        <h3>🚔 Carreira</h3>
+                        <p>15 anos como Perito Criminal<br>Ex-Investigador da Polícia Civil<br>Especialista em cenas de crime</p>
+                    </div>
+                </div>
+                
+                <div class="tree-node branch-left-node">
+                    <div class="tree-content">
+                        <h3>👨‍👧‍👦 Heitor</h3>
+                        <p>O caçula<br>Herdeiro do amor por barcos</p>
+                    </div>
+                </div>
+                
+                <div class="tree-node branch-right-node">
+                    <div class="tree-content">
+                        <h3>👦 Vinícius</h3>
+                        <p>O primogênito<br>Compartilha a paixão por geopolítica</p>
+                    </div>
+                </div>
+                
+                <div class="tree-node branch-center-node">
+                    <div class="tree-content">
+                        <h3>👧 Luiza</h3>
+                        <p>A princesa da família<br>Fonte de alegria diária</p>
+                    </div>
+                </div>
+                
+                <div class="tree-node dream dream-1">
+                    <div class="tree-content">
+                        <h3>⛵ Sonho Náutico</h3>
+                        <p>Volta ao mundo de barco</p>
+                    </div>
+                </div>
+                
+                <div class="tree-node dream dream-2">
+                    <div class="tree-content">
+                        <h3>🏡 Lar Próprio</h3>
+                        <p>Em breve realidade<br><em>"A casa é o porto seguro"</em></p>
+                    </div>
+                </div>
+                
+                <div class="tree-node dream dream-3">
+                    <div class="tree-content">
+                        <h3>🌍 Filosofia Viva</h3>
+                        <p>Visitar Rússia, China e Irã<br>Escrever um livro</p>
+                    </div>
+                </div>
+                <div class="tree-root"></div>
+                <div class="tree-trunk"></div>
+                <div class="tree-branch left"></div>
+                <div class="tree-branch right"></div>
+                <div class="tree-branch center"></div>
+            </div>
+            
+            <div class="tree-quote">
+                <p>"Esta árvore cresce forte porque suas raízes são feitas de <br> <strong>resiliência</strong>, seus galhos de <strong>amor familiar</strong> <br> e seus frutos de <strong>sonhos em realização</strong>."</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>Que os ventos te levem a portos desconhecidos, mas o coração sempre te traga de volta.</p>
+        <div class="sailboat">⛵</div>
+    </footer>
+    
+    <script>
+        // Interatividade para os marcadores do mapa
+        document.querySelectorAll('.country-marker').forEach(marker => {
+            marker.addEventListener('click', function() {
+                const country = this.classList[1];
+                const infoBox = document.getElementById(`${country}-info`);
+                // Fecha outras caixas de informação abertas
+                document.querySelectorAll('.country-info').forEach(box => {
+                    if (box.id !== `${country}-info`) {
+                        box.style.display = 'none';
+                    }
+                });
+                infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
+                // Posiciona a caixa de informação ao lado do marcador
+                infoBox.style.left = `${this.offsetLeft + 40}px`;
+                infoBox.style.top = `${this.offsetTop}px`;
+            });
+        });
+        
+        // Animação do barco (mantida a original)
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            const sailboat = document.querySelector('.sailboat');
+            sailboat.style.bottom = `${20 + (scrollPosition * 0.05)}px`; // Ajuste a velocidade de movimento do barco
+        });
+    </script>
+</body>
+</html>
