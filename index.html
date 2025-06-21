@@ -261,18 +261,18 @@
         }
 
         /* Seção da Árvore da Vida */
-        .tree-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            position: relative;
-            height: 900px;
-            background: url('assets/images/textura-madeira.jpg') center/cover;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            /* Adicionado overflow para ajudar no posicionamento das linhas */
-            overflow: hidden;
-        }
+     
+.tree-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    position: relative;
+    height: 1200px; /* Aumentado de 900px para 1200px */
+    background: url('textura-madeira.avif') center/cover;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
 
         .tree {
             position: relative;
@@ -315,15 +315,15 @@
         }
 
         /* Classes posicionais da árvore */
-        /* Ajustei as posições para que haja espaço para as linhas. Os valores podem precisar de ajuste fino. */
-        .foundation { left: 50%; bottom: 50px; transform: translateX(-50%); }
-        .career { left: 50%; bottom: 200px; transform: translateX(-50%); }
-        .son1 { left: 25%; bottom: 350px; }
-        .son2 { left: 75%; bottom: 350px; }
-        .daughter { left: 50%; bottom: 500px; transform: translateX(-50%); } /* Centralizado para melhor visualização */
-        .dream1 { left: 15%; bottom: 650px; } /* Ajustado para não colidir com outros */
-        .dream2 { left: 85%; bottom: 650px; } /* Ajustado para não colidir com outros */
-        .dream3 { left: 50%; bottom: 750px; transform: translateX(-50%); } /* Centralizado */
+
+.foundation { left: 50%; bottom: 50px; transform: translateX(-50%); }
+.career { left: 50%; bottom: 200px; transform: translateX(-50%); }
+.son1 { left: 25%; bottom: 350px; }
+.son2 { left: 75%; bottom: 350px; }
+.daughter { left: 50%; bottom: 500px; transform: translateX(-50%); } /* Centralizado para melhor visualização */
+.dream1 { left: 15%; bottom: 650px; } /* Ajustado para não colidir com outros */
+.dream2 { left: 50%; bottom: 650px; transform: translateX(-50%); } /* ALTERADO AQUI: Centralizado para melhor visualização */
+.dream3 { left: 50%; bottom: 750px; transform: translateX(-50%); } /* Centralizado */
 
         /* Seção do Quiz */
         .quiz-container {
