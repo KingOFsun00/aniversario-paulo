@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paulo Victor - 39 Anos de Sabedoria</title>
+    <title>Paulo Victor - 39 Anos de Sabedoria Náutica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
             --rust: #8B0000;
             --parchment: #F5F5DC;
         }
-        
+
         body {
             font-family: 'Playfair Display', serif;
             background-color: var(--parchment);
@@ -22,17 +22,18 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        
+
+        /* Hero Section */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504472478235-9bc48ba70e4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504472478235-9bc48ba70e4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -41,8 +42,9 @@
             text-align: center;
             color: white;
             position: relative;
+            z-index: 1; /* Ensure hero content is above globe */
         }
-        
+
         h1 {
             font-family: 'Cinzel', serif;
             font-size: 4rem;
@@ -50,13 +52,13 @@
             color: var(--gold);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        
+
         .subtitle {
             font-size: 1.5rem;
             margin: 20px 0;
             font-style: italic;
         }
-        
+
         .scroll-down {
             position: absolute;
             bottom: 30px;
@@ -66,18 +68,39 @@
             font-size: 2rem;
             animation: bounce 2s infinite;
         }
-        
+
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
         }
-        
+
+        /* Three.js Globe Section */
+        #globe-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background-color: var(--navy); /* Fallback background */
+        }
+        #globe-container canvas {
+            display: block; /* Remove extra space below canvas */
+        }
+
+        /* General Section Styling */
         .section {
             padding: 80px 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
-        
+
+        .section h2 {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: var(--rust);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        /* Quotes Section */
         .quote {
             font-size: 1.8rem;
             font-style: italic;
@@ -87,14 +110,24 @@
             position: relative;
             color: var(--rust);
         }
-        
+
         .quote:before, .quote:after {
-            content: '"';
+            content: '“';
             font-size: 3rem;
             color: var(--gold);
             opacity: 0.5;
+            position: absolute;
+            top: -10px;
         }
-        
+
+        .quote:after {
+            content: '”';
+            left: unset;
+            right: 0;
+            top: unset;
+            bottom: -30px;
+        }
+
         .philosopher {
             display: block;
             text-align: right;
@@ -102,14 +135,17 @@
             margin-top: 20px;
             font-weight: bold;
         }
-        
+
+        /* Map Section */
         .map-container {
             position: relative;
             height: 500px;
-            background: url('https://images.unsplash.com/photo-1534237886190-ced735ca4b73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1534237886190-ced735ca4b73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
             margin: 60px 0;
+            border-radius: 8px;
+            overflow: hidden; /* Ensure markers and info boxes stay within */
         }
-        
+
         .country-marker {
             position: absolute;
             width: 30px;
@@ -119,16 +155,24 @@
             transform: translate(-50%, -50%);
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: var(--navy);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
-        
+
         .country-marker:hover {
-            transform: translate(-50%, -50%) scale(1.5);
+            transform: translate(-50%, -50%) scale(1.3);
         }
-        
+
+        /* Specific marker positions (approximate) */
         .china { top: 35%; left: 75%; }
-        .iran { top: 40%; left: 65%; }
+        .iran { top: 40%; left: 60%; } /* Adjusted slightly for better placement */
         .russia { top: 25%; left: 70%; }
-        
+        .brazil { top: 70%; left: 30%; background-color: var(--rust); } /* Added Brazil marker */
+
         .country-info {
             display: none;
             position: absolute;
@@ -138,14 +182,27 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             max-width: 300px;
             z-index: 10;
+            transform: translate(-50%, -100%); /* Position above the marker */
+            margin-top: -10px; /* Adjust spacing */
         }
-        
+        .country-info h3 {
+            color: var(--navy);
+            margin-top: 0;
+            font-family: 'Cinzel', serif;
+        }
+        .country-info p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Timeline Section */
         .timeline {
             position: relative;
             max-width: 800px;
             margin: 0 auto;
+            padding: 20px 0;
         }
-        
+
         .timeline:before {
             content: '';
             position: absolute;
@@ -156,294 +213,185 @@
             left: 50%;
             margin-left: -1px;
         }
-        
+
         .timeline-item {
             padding: 10px 40px;
             position: relative;
             width: 50%;
             box-sizing: border-box;
         }
-        
+
         .timeline-item:nth-child(odd) {
             left: 0;
+            text-align: right;
         }
-        
+
         .timeline-item:nth-child(even) {
             left: 50%;
         }
-        
+
         .timeline-content {
             padding: 20px;
             background-color: white;
             border-radius: 5px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--rust);
+            border: 2px solid var(--gold);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd):after {
+            right: -8px;
+        }
+
+        .timeline-item:nth-child(even):after {
+            left: -8px;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: url('https://i.imgur.com/Jf1cm6W.jpg') center/cover no-repeat;
+            background-attachment: fixed; /* Parallax effect */
+            padding: 60px 40px;
+            max-width: 900px;
+            margin: 50px auto;
+            color: white; /* Changed text color for contrast */
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+        .quiz-container h2 {
+            color: var(--gold);
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .quiz-question {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            color: var(--navy);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .quiz-question p {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .quiz-options button {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 15px 20px;
+            background-color: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .quiz-options button:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+        .quiz-result {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 8px;
+            color: var(--navy);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+        .quiz-result h3 {
+            color: var(--rust);
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        /* Footer */
         footer {
             background-color: var(--navy);
             color: white;
             text-align: center;
             padding: 40px;
             margin-top: 60px;
+            position: relative;
+            overflow: hidden; /* For the sailboat animation */
         }
-        
+
+        .footer-text {
+            position: relative;
+            z-index: 2; /* Keep text above sailboat */
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
         .sailboat {
             position: absolute;
-            width: 100px;
-            height: 100px;
+            width: 150px; /* Larger sailboat */
+            height: auto;
             bottom: 20px;
-            left: 0;
+            left: -200px; /* Start off-screen */
             animation: sail 30s linear infinite;
+            z-index: 1;
         }
-        
+
         @keyframes sail {
-            0% { transform: translateX(-100px); }
-            100% { transform: translateX(calc(100vw + 100px)); }
+            0% { transform: translateX(-200px); }
+            100% { transform: translateX(calc(100vw + 200px)); }
         }
 
-        /* CSS para a Árvore da Vida */
-        .tree-container {
-            position: relative;
-            height: 800px; /* Ajuste a altura conforme necessário */
-            margin: 50px auto;
-            width: 90%;
-            max-width: 800px; /* Adicionado para controle de largura em telas grandes */
-            background: url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
-            background-repeat: no-repeat;
-            background-position: center bottom; /* Ajuste para o background da árvore */
-        }
-
-        .tree-root, .tree-trunk, .tree-branch {
-            position: absolute;
-            background-color: #5E2C04;
-            border-radius: 10px;
-        }
-
-        .tree-root {
-            width: 100px;
-            height: 50px;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1; /* Garante que as raízes fiquem por baixo */
-        }
-
-        .tree-trunk {
-            width: 60px;
-            height: 200px;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-        }
-
-        .tree-branch {
-            width: 2px; /* Espessura dos galhos */
-            height: 150px;
-            background: linear-gradient(to right, #5E2C04, #8B4513);
-            transform-origin: bottom center; /* Ponto de rotação na base */
-            z-index: 1;
-        }
-
-        .tree-branch.left {
-            transform: translateX(-50%) rotate(-30deg); /* Ajuste para centralizar e rotacionar */
-            left: 40%; /* Ajuste para posicionamento */
-            bottom: 150px;
-            height: 200px; /* Aumenta o tamanho para melhor visualização */
-        }
-
-        .tree-branch.right {
-            transform: translateX(-50%) rotate(30deg); /* Ajuste para centralizar e rotacionar */
-            left: 60%; /* Ajuste para posicionamento */
-            bottom: 150px;
-            height: 200px; /* Aumenta o tamanho para melhor visualização */
-        }
-
-        .tree-branch.center {
-            height: 100px;
-            bottom: 250px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tree-node {
-            position: absolute;
-            width: 180px;
-            transform: translateX(-50%) translateY(-50%);
-            z-index: 2; /* Garante que os nós fiquem por cima dos galhos */
-        }
-
-        .tree-content {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-            min-height: 90px; /* Garante altura mínima para conteúdo similar */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .tree-content:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .tree-node.dream .tree-content {
-            background-color: var(--gold);
-            color: var(--navy);
-        }
-
-        /* Posicionamento dos nós */
-        .tree-node.root-node { top: 90%; left: 50%; }
-        .tree-node.trunk-node { top: 70%; left: 50%; }
-        .tree-node.branch-left-node { top: 45%; left: 30%; } /* Ajustado */
-        .tree-node.branch-right-node { top: 45%; left: 70%; } /* Ajustado */
-        .tree-node.branch-center-node { top: 25%; left: 50%; } /* Ajustado */
-        
-        .tree-node.dream-1 { top: 10%; left: 20%; } /* Ajustado */
-        .tree-node.dream-2 { top: 10%; left: 80%; } /* Ajustado */
-        .tree-node.dream-3 { top: -5%; left: 50%; } /* Ajustado para topo */
-
-        .tree-fruits {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-        
-        .tree-fruits .tree-node {
-            top: unset; /* Remove posicionamento herdado */
-            left: unset; /* Remove posicionamento herdado */
-        }
-
-        /* Efeito de brilho para os frutos */
-        .tree-node.dream .tree-content::before {
-            content: "✨";
-            position: absolute;
-            font-size: 2rem;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: twinkle 2s infinite alternate;
-        }
-
-        @keyframes twinkle {
-            from { opacity: 0.5; }
-            to { opacity: 1; }
-        }
-
-        .tree-quote {
-            text-align: center;
-            font-style: italic;
-            margin-top: 40px;
-            font-size: 1.2rem;
-            color: var(--rust);
-            padding-bottom: 40px;
-        }
-
-        /* Responsividade para telas menores */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 3rem;
-            }
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            .quote {
-                font-size: 1.5rem;
-            }
-            .tree-container {
-                height: 600px;
-            }
-            .tree-trunk {
-                height: 150px;
-                bottom: 30px;
-            }
-            .tree-branch {
-                height: 120px;
-                bottom: 120px;
-            }
-            .tree-branch.left {
-                left: 35%;
-                height: 150px;
-            }
-            .tree-branch.right {
-                left: 65%;
-                height: 150px;
-            }
-            .tree-branch.center {
-                height: 80px;
-                bottom: 200px;
-            }
-
-            .tree-node {
-                width: 150px;
-            }
-            .tree-content {
-                padding: 10px;
-            }
-
-            .tree-node.branch-left-node { top: 40%; left: 25%; }
-            .tree-node.branch-right-node { top: 40%; left: 75%; }
-            .tree-node.branch-center-node { top: 20%; left: 50%; }
-
-            .tree-node.dream-1 { top: 5%; left: 15%; }
-            .tree-node.dream-2 { top: 5%; left: 85%; }
-            .tree-node.dream-3 { top: -10%; left: 50%; } /* Mais para cima */
-        }
-
-        @media (max-width: 480px) {
             h1 {
                 font-size: 2.5rem;
             }
             .subtitle {
-                font-size: 1rem;
-            }
-            .quote {
                 font-size: 1.2rem;
             }
-            .tree-container {
-                height: 500px;
+            .quote {
+                font-size: 1.4rem;
             }
-            .tree-trunk {
-                height: 100px;
-                bottom: 20px;
+            .timeline:before {
+                left: 20px;
             }
-            .tree-branch {
-                height: 80px;
-                bottom: 80px;
+            .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 10px;
             }
-            .tree-branch.left {
-                left: 30%;
-                height: 100px;
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+                text-align: left;
             }
-            .tree-branch.right {
-                left: 70%;
-                height: 100px;
+            .timeline-item:nth-child(odd):after,
+            .timeline-item:nth-child(even):after {
+                left: 12px;
             }
-            .tree-branch.center {
-                height: 60px;
-                bottom: 150px;
+            .quiz-container {
+                padding: 30px 20px;
             }
-            .tree-node {
-                width: 120px;
+            .quiz-question p {
+                font-size: 1.1rem;
             }
-            .tree-content {
-                font-size: 0.8rem;
-                min-height: 70px;
+            .quiz-options button {
+                width: 95%;
+                font-size: 1rem;
             }
-
-            .tree-node.branch-left-node { top: 35%; left: 20%; }
-            .tree-node.branch-right-node { top: 35%; left: 80%; }
-            .tree-node.branch-center-node { top: 15%; left: 50%; }
-
-            .tree-node.dream-1 { top: 0%; left: 10%; }
-            .tree-node.dream-2 { top: 0%; left: 90%; }
-            .tree-node.dream-3 { top: -15%; left: 50%; }
         }
     </style>
 </head>
@@ -453,188 +401,340 @@
         <div class="subtitle">39 Anos de Sabedoria Náutica</div>
         <div class="scroll-down">↓</div>
     </header>
-    
+
+    <section id="globe-container"></section>
+
     <div class="container">
         <section class="section">
+            <h2>Pérolas de Sabedoria</h2>
             <div class="quote">
                 "Aquele que tem um porquê para viver pode suportar quase qualquer como."
                 <span class="philosopher">— Friedrich Nietzsche</span>
             </div>
-            
+
             <div class="quote">
                 "O navio que navega em direção a muitos portos nunca chegará a lugar nenhum."
                 <span class="philosopher">— Platão</span>
             </div>
+
+            <div class="quote">
+                "Não é o vento favorável que te leva ao porto, mas a forma como você ajusta as velas."
+                <span class="philosopher">— Autor Desconhecido</span>
+            </div>
         </section>
-        
+
         <section class="section">
-            <h2 style="text-align: center; font-family: 'Cinzel', serif; color: var(--rust);">Rotas do Conhecimento</h2>
+            <h2>Rotas do Conhecimento</h2>
             <div class="map-container">
-                <div class="country-marker china"></div>
-                <div class="country-marker iran"></div>
-                <div class="country-marker russia"></div>
-                
+                <div class="country-marker china" data-country="china">CN</div>
+                <div class="country-marker iran" data-country="iran">IR</div>
+                <div class="country-marker russia" data-country="russia">RU</div>
+                <div class="country-marker brazil" data-country="brazil">BR</div>
+
                 <div class="country-info" id="china-info">
                     <h3>China</h3>
                     <p>"A jornada de mil milhas começa com um único passo." - Lao Tzu</p>
                 </div>
                 <div class="country-info" id="iran-info">
                     <h3>Irã</h3>
-                    <p>"Seja a mudança que você deseja ver no mundo." - Mahatma Gandhi (adaptado)</p>
+                    <p>"Raise your words, not voice. It is rain that grows flowers, not thunder." - Rumi</p>
                 </div>
                 <div class="country-info" id="russia-info">
                     <h3>Rússia</h3>
-                    <p>"A verdadeira sabedoria reside em saber que você não sabe nada." - Sócrates (adaptado)</p>
+                    <p>"Above all, don't lie to yourself." - Dostoiévski</p>
+                </div>
+                <div class="country-info" id="brazil-info">
+                    <h3>Brasil</h3>
+                    <p>"Navegar é preciso, viver não é preciso." - Fernando Pessoa</p>
                 </div>
             </div>
         </section>
-        
+
         <section class="section">
-            <h2 style="text-align: center; font-family: 'Cinzel', serif; color: var(--rust);">39 Ventos Favoráveis</h2>
+            <h2>39 Ventos Favoráveis: A Jornada</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>1985</h3>
-                        <p>Nasce um explorador, filósofo e futuro navegador.</p>
+                        <p>Nasce um explorador, filósofo e futuro navegador. O início da grande jornada.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1995</h3>
+                        <p>Primeiro contato com o vasto oceano, despertando a paixão por novas rotas.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>2005</h3>
-                        <p>Início da jornada acadêmica em Direito.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2010</h3>
-                        <p>Ingresso na Polícia Civil como Investigador.</p>
+                        <p>Início dos estudos aprofundados em navegação e filosofia da existência.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>2015</h3>
-                        <p>Aprovação e início como Perito Criminal Federal.</p>
+                        <p>Expedições desafiadoras e o acúmulo de sabedoria prática em diversas águas.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>2020</h3>
-                        <p>Momento de transição: Separação de Camila, mãe de Vinicius e Luiza.</p>
-                    </div>
-                </div>
-                 <div class="timeline-item">
-                    <div class="timeline-content">
                         <h3>2025</h3>
-                        <p>O começo de novos sonhos e rotas a explorar.</p>
+                        <p>39 anos de ventos favoráveis, com o horizonte sempre à vista e novas descobertas por vir.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        ---
-
-        <section class="section">
-            <h2 style="text-align: center; font-family: 'Cinzel', serif; color: var(--rust);">Árvore da Vida</h2>
-            
-            <div class="tree-container">
-                <div class="tree-node tree-root-node">
-                    <div class="tree-content">
-                        <h3>Fundações</h3>
-                        <p>Formado em Direito<br>Bilíngue (Inglês/Espanhol)<br>Valores familiares</p>
+        <section class="quiz-container">
+            <h2>Qual Pensador Você É?</h2>
+            <div id="quiz">
+                <div class="quiz-question" id="q1">
+                    <p>Como você resolveria um conflito naval entre países?</p>
+                    <div class="quiz-options">
+                        <button data-answer="sun_tzu">Com estratégia militar e astúcia (Sun Tzu)</button>
+                        <button data-answer="confucius">Com diálogo diplomático e respeito mútuo (Confúcio)</button>
+                        <button data-answer="aristotle">Com análise lógica das causas e efeitos (Aristóteles)</button>
                     </div>
                 </div>
-                
-                <div class="tree-node trunk-node">
-                    <div class="tree-content">
-                        <h3>🚔 Carreira</h3>
-                        <p>15 anos como Perito Criminal<br>Ex-Investigador da Polícia Civil<br>Especialista em cenas de crime</p>
+                <div class="quiz-question" id="q2" style="display: none;">
+                    <p>Qual é o seu principal guia na vida?</p>
+                    <div class="quiz-options">
+                        <button data-answer="nietzsche">A busca incessante por superação e o propósito pessoal (Nietzsche)</button>
+                        <button data-answer="rumi">A conexão espiritual e a beleza intrínseca da existência (Rumi)</button>
+                        <button data-answer="dostoevsky">A exploração das profundezas da psique humana e moralidade (Dostoiévski)</button>
                     </div>
                 </div>
-                
-                <div class="tree-node branch-left-node">
-                    <div class="tree-content">
-                        <h3>👨‍👧‍👦 Heitor</h3>
-                        <p>O caçula<br>Herdeiro do amor por barcos</p>
-                    </div>
-                </div>
-                
-                <div class="tree-node branch-right-node">
-                    <div class="tree-content">
-                        <h3>👦 Vinícius</h3>
-                        <p>O primogênito<br>Compartilha a paixão por geopolítica</p>
-                    </div>
-                </div>
-                
-                <div class="tree-node branch-center-node">
-                    <div class="tree-content">
-                        <h3>👧 Luiza</h3>
-                        <p>A princesa da família<br>Fonte de alegria diária</p>
-                    </div>
-                </div>
-                
-                <div class="tree-node dream dream-1">
-                    <div class="tree-content">
-                        <h3>⛵ Sonho Náutico</h3>
-                        <p>Volta ao mundo de barco</p>
-                    </div>
-                </div>
-                
-                <div class="tree-node dream dream-2">
-                    <div class="tree-content">
-                        <h3>🏡 Lar Próprio</h3>
-                        <p>Em breve realidade<br><em>"A casa é o porto seguro"</em></p>
-                    </div>
-                </div>
-                
-                <div class="tree-node dream dream-3">
-                    <div class="tree-content">
-                        <h3>🌍 Filosofia Viva</h3>
-                        <p>Visitar Rússia, China e Irã<br>Escrever um livro</p>
-                    </div>
-                </div>
-                <div class="tree-root"></div>
-                <div class="tree-trunk"></div>
-                <div class="tree-branch left"></div>
-                <div class="tree-branch right"></div>
-                <div class="tree-branch center"></div>
             </div>
-            
-            <div class="tree-quote">
-                <p>"Esta árvore cresce forte porque suas raízes são feitas de <br> <strong>resiliência</strong>, seus galhos de <strong>amor familiar</strong> <br> e seus frutos de <strong>sonhos em realização</strong>."</p>
+            <div class="quiz-result" id="quiz-result">
+                <h3>Seu Pensador é: <span id="result-philosopher"></span>!</h3>
+                <p id="result-quote"></p>
+                <button onclick="resetQuiz()">Tentar Novamente</button>
             </div>
         </section>
     </div>
-    
+
     <footer>
-        <p>Que os ventos te levem a portos desconhecidos, mas o coração sempre te traga de volta.</p>
-        <div class="sailboat">⛵</div>
-    </footer>
-    
+        <p class="footer-text">Que os ventos te levem a portos desconhecidos, mas o coração sempre te traga de volta.</p>
+        <img src="https://i.imgur.com/G4lE60Z.png" alt="Sailboat" class="sailboat"> </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+
     <script>
-        // Interatividade para os marcadores do mapa
-        document.querySelectorAll('.country-marker').forEach(marker => {
+        // Smooth scrolling for scroll-down arrow
+        document.querySelector('.scroll-down').addEventListener('click', function() {
+            window.scrollTo({
+                top: document.getElementById('globe-container').offsetTop,
+                behavior: 'smooth'
+            });
+        });
+
+        // ===== THREE.JS GLOBE ===== //
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // Added alpha: true for transparent background
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('globe-container').appendChild(renderer.domElement);
+
+        // Adjust camera position initially
+        camera.position.z = 10;
+
+        // Add a light source for better visibility
+        const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 5, 5).normalize();
+        scene.add(directionalLight);
+
+        // Create globe with an updated texture if possible, or use the provided one
+        const globeGeometry = new THREE.SphereGeometry(5, 64, 64);
+        const globeTextureLoader = new THREE.TextureLoader();
+        const globeMaterial = new THREE.MeshPhongMaterial({ // Use MeshPhongMaterial for lighting effects
+            map: globeTextureLoader.load('https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg'),
+            specularMap: globeTextureLoader.load('https://threejs.org/examples/textures/planets/earth_specular_2048.jpg'), // Add specular map for shininess
+            bumpMap: globeTextureLoader.load('https://threejs.org/examples/textures/planets/earth_normal_2048.jpg'), // Add bump map for surface detail
+            bumpScale: 0.1
+        });
+        const globe = new THREE.Mesh(globeGeometry, globeMaterial);
+        scene.add(globe);
+
+        // OrbitControls for user interaction
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true; // smooth zoom/rotate
+        controls.dampingFactor = 0.05;
+        controls.minDistance = 8;
+        controls.maxDistance = 20;
+
+        // Responsive globe sizing
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Animation loop
+        function animateGlobe() {
+            requestAnimationFrame(animateGlobe);
+            globe.rotation.y += 0.001; // Continuous subtle rotation
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animateGlobe();
+
+        // ===== MAP MARKERS INTERACTIVITY ===== //
+        const countryMarkers = document.querySelectorAll('.country-marker');
+        const countryInfoBoxes = document.querySelectorAll('.country-info');
+
+        countryMarkers.forEach(marker => {
             marker.addEventListener('click', function() {
-                const country = this.classList[1];
+                const country = this.dataset.country;
                 const infoBox = document.getElementById(`${country}-info`);
-                // Fecha outras caixas de informação abertas
-                document.querySelectorAll('.country-info').forEach(box => {
+
+                // Hide all other info boxes
+                countryInfoBoxes.forEach(box => {
                     if (box.id !== `${country}-info`) {
                         box.style.display = 'none';
                     }
                 });
-                infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
-                // Posiciona a caixa de informação ao lado do marcador
-                infoBox.style.left = `${this.offsetLeft + 40}px`;
-                infoBox.style.top = `${this.offsetTop}px`;
+
+                // Toggle display for the clicked info box
+                if (infoBox.style.display === 'block') {
+                    infoBox.style.display = 'none';
+                } else {
+                    infoBox.style.display = 'block';
+                    // Position the info box relative to the marker
+                    const markerRect = this.getBoundingClientRect();
+                    const mapRect = this.closest('.map-container').getBoundingClientRect();
+
+                    infoBox.style.left = `${markerRect.left - mapRect.left + (markerRect.width / 2)}px`;
+                    infoBox.style.top = `${markerRect.top - mapRect.top - infoBox.offsetHeight - 10}px`; // Above the marker
+                }
             });
         });
-        
-        // Animação do barco (mantida a original)
+
+        // Hide info boxes when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideMap = event.target.closest('.map-container');
+            if (!isClickInsideMap) {
+                countryInfoBoxes.forEach(box => {
+                    box.style.display = 'none';
+                });
+            }
+        });
+
+        // ===== PHILOSOPHICAL QUIZ ===== //
+        const quizQuestions = [
+            {
+                question: "Como você resolveria um conflito naval entre países?",
+                options: [
+                    { text: "Com estratégia militar e astúcia", philosopher: "Sun Tzu", quote: "『A suprema arte da guerra é subjugar o inimigo sem lutar.』" },
+                    { text: "Com diálogo diplomático e respeito mútuo", philosopher: "Confúcio", quote: "『O homem nobre é justo em seus atos e humilde em suas palavras.』" },
+                    { text: "Com análise lógica das causas e efeitos", philosopher: "Aristóteles", quote: "『A raiz da educação é amarga, mas seus frutos são doces.』" }
+                ]
+            },
+            {
+                question: "Qual é o seu principal guia na vida?",
+                options: [
+                    { text: "A busca incessante por superação e o propósito pessoal", philosopher: "Nietzsche", quote: "『Aquilo que não me mata, só me fortalece.』" },
+                    { text: "A conexão espiritual e a beleza intrínseca da existência", philosopher: "Rumi", quote: "『Raise your words, not voice. It is rain that grows flowers, not thunder.』" },
+                    { text: "A exploração das profundezas da psique humana e moralidade", philosopher: "Dostoiévski", quote: "『Acima de tudo, não minta para si mesmo.』" }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let quizResults = {}; // To store the chosen philosophers
+
+        const quizDiv = document.getElementById('quiz');
+        const quizResultDiv = document.getElementById('quiz-result');
+        const resultPhilosopherSpan = document.getElementById('result-philosopher');
+        const resultQuoteP = document.getElementById('result-quote');
+
+        function loadQuestion() {
+            if (currentQuestionIndex < quizQuestions.length) {
+                const qData = quizQuestions[currentQuestionIndex];
+                let questionHtml = `<div class="quiz-question" id="q${currentQuestionIndex + 1}">
+                                        <p>${qData.question}</p>
+                                        <div class="quiz-options">`;
+                qData.options.forEach((option, index) => {
+                    questionHtml += `<button data-philosopher="${option.philosopher}" data-quote="${option.quote}">${option.text}</button>`;
+                });
+                questionHtml += `</div></div>`;
+                quizDiv.innerHTML = questionHtml;
+
+                document.querySelectorAll('.quiz-options button').forEach(button => {
+                    button.addEventListener('click', handleAnswer);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function handleAnswer(event) {
+            const chosenPhilosopher = event.target.dataset.philosopher;
+            const chosenQuote = event.target.dataset.quote;
+
+            quizResults[chosenPhilosopher] = (quizResults[chosenPhilosopher] || 0) + 1; // Increment count for chosen philosopher
+
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function showResults() {
+            let topPhilosopher = '';
+            let maxCount = 0;
+
+            for (const philosopher in quizResults) {
+                if (quizResults[philosopher] > maxCount) {
+                    maxCount = quizResults[philosopher];
+                    topPhilosopher = philosopher;
+                }
+            }
+
+            // If there's a tie, randomly pick one of the tied philosophers
+            const tiedPhilosophers = Object.keys(quizResults).filter(key => quizResults[key] === maxCount);
+            topPhilosopher = tiedPhilosophers[Math.floor(Math.random() * tiedPhilosophers.length)];
+
+            // Find the quote for the determined philosopher
+            let finalQuote = "Sua sabedoria guia seus caminhos.";
+            quizQuestions.forEach(q => {
+                q.options.forEach(opt => {
+                    if (opt.philosopher === topPhilosopher) {
+                        finalQuote = opt.quote;
+                    }
+                });
+            });
+
+            resultPhilosopherSpan.textContent = topPhilosopher;
+            resultQuoteP.textContent = finalQuote;
+            quizDiv.style.display = 'none';
+            quizResultDiv.style.display = 'block';
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            quizResults = {};
+            quizDiv.style.display = 'block';
+            quizResultDiv.style.display = 'none';
+            loadQuestion();
+        }
+
+        // Initialize the quiz
+        loadQuestion();
+
+        // Sailboat animation (from second code) - Adjusted to be always visible in footer
+        // No need for scroll event for the sailboat if it's purely CSS animated in the footer.
+        // If you want it to react to scroll, uncomment and adapt the original logic:
+        /*
         window.addEventListener('scroll', function() {
             const scrollPosition = window.scrollY;
             const sailboat = document.querySelector('.sailboat');
-            sailboat.style.bottom = `${20 + (scrollPosition * 0.05)}px`; // Ajuste a velocidade de movimento do barco
+            // Example: Make it move based on scroll, but ensure it stays within bounds
+            // This example simply moves it up/down which might not be the desired effect.
+            // sailboat.style.bottom = `${20 + (scrollPosition * 0.05)}px`;
         });
+        */
     </script>
 </body>
 </html>
