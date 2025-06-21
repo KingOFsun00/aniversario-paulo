@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paulo Victor - 39 Anos de Sabedoria Náutica</title>
+    <title>Paulo Victor - Uma Jornada de Sabedoria e Legado</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Estilos gerais */
         :root {
             --navy: #001f3f;
             --gold: #D4AF37;
@@ -22,7 +23,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+            overflow-x: hidden; /* Previne rolagem horizontal devido a animações */
         }
 
         .container {
@@ -31,32 +32,28 @@
             padding: 20px;
         }
 
-        /* Hero Section */
-        header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504472478235-9bc48ba70e4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            z-index: 1; /* Ensure hero content is above globe */
-        }
-
         h1 {
             font-family: 'Cinzel', serif;
             font-size: 4rem;
             margin: 0;
             color: var(--gold);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--rust);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
         }
 
         .subtitle {
             font-size: 1.5rem;
             margin: 20px 0;
             font-style: italic;
+            text-align: center;
         }
 
         .scroll-down {
@@ -75,32 +72,38 @@
             60% {transform: translateY(-10px) translateX(-50%);}
         }
 
-        /* Three.js Globe Section */
+        /* Seção Hero */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/images/veleiro.jpg') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Seção do Globo Three.js */
         #globe-container {
             width: 100%;
             height: 100vh;
             position: relative;
-            background-color: var(--navy); /* Fallback background */
+            background-color: var(--navy); /* Fundo de fallback */
         }
         #globe-container canvas {
-            display: block; /* Remove extra space below canvas */
+            display: block; /* Remove espaço extra abaixo do canvas */
         }
 
-        /* General Section Styling */
+        /* Estilo Geral das Seções */
         .section {
             padding: 80px 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        .section h2 {
-            text-align: center;
-            font-family: 'Cinzel', serif;
-            color: var(--rust);
-            margin-bottom: 40px;
-            font-size: 2.5rem;
-        }
-
-        /* Quotes Section */
+        /* Seção de Citações */
         .quote {
             font-size: 1.8rem;
             font-style: italic;
@@ -136,14 +139,14 @@
             font-weight: bold;
         }
 
-        /* Map Section */
+        /* Seção do Mapa */
         .map-container {
             position: relative;
             height: 500px;
             background: url('https://images.unsplash.com/photo-1534237886190-ced735ca4b73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
             margin: 60px 0;
             border-radius: 8px;
-            overflow: hidden; /* Ensure markers and info boxes stay within */
+            overflow: hidden; /* Garante que os marcadores e caixas de informação fiquem dentro */
         }
 
         .country-marker {
@@ -167,11 +170,11 @@
             transform: translate(-50%, -50%) scale(1.3);
         }
 
-        /* Specific marker positions (approximate) */
+        /* Posições específicas dos marcadores (aproximadas) */
         .china { top: 35%; left: 75%; }
-        .iran { top: 40%; left: 60%; } /* Adjusted slightly for better placement */
+        .iran { top: 40%; left: 60%; } /* Ajustado ligeiramente para melhor posicionamento */
         .russia { top: 25%; left: 70%; }
-        .brazil { top: 70%; left: 30%; background-color: var(--rust); } /* Added Brazil marker */
+        .brazil { top: 70%; left: 30%; background-color: var(--rust); } /* Adicionado marcador do Brasil */
 
         .country-info {
             display: none;
@@ -182,8 +185,8 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             max-width: 300px;
             z-index: 10;
-            transform: translate(-50%, -100%); /* Position above the marker */
-            margin-top: -10px; /* Adjust spacing */
+            transform: translate(-50%, -100%); /* Posição acima do marcador */
+            margin-top: -10px; /* Ajusta o espaçamento */
         }
         .country-info h3 {
             color: var(--navy);
@@ -195,7 +198,7 @@
             line-height: 1.5;
         }
 
-        /* Timeline Section */
+        /* Seção da Linha do Tempo */
         .timeline {
             position: relative;
             max-width: 800px;
@@ -257,14 +260,79 @@
             left: -8px;
         }
 
-        /* Quiz Section */
+        /* Seção da Árvore da Vida */
+        .tree-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            position: relative;
+            height: 900px;
+            background: url('assets/images/textura-madeira.jpg') center/cover;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            /* Adicionado overflow para ajudar no posicionamento das linhas */
+            overflow: hidden;
+        }
+
+        .tree {
+            position: relative;
+            height: 100%;
+            width: 100%; /* Garante que o .tree ocupe todo o container */
+        }
+
+        .tree-node {
+            position: absolute;
+            width: 220px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold);
+            text-align: center;
+        }
+
+        .tree-node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .tree-node h3 {
+            color: var(--rust);
+            margin-top: 0;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 5px;
+        }
+
+        /* Linhas conectando os nós */
+        .tree-connector {
+            position: absolute;
+            background-color: var(--gold);
+            height: 2px; /* Espessura da linha */
+            transform-origin: 0 0; /* Ponto de origem da rotação */
+            z-index: -1;
+        }
+
+        /* Classes posicionais da árvore */
+        /* Ajustei as posições para que haja espaço para as linhas. Os valores podem precisar de ajuste fino. */
+        .foundation { left: 50%; bottom: 50px; transform: translateX(-50%); }
+        .career { left: 50%; bottom: 200px; transform: translateX(-50%); }
+        .son1 { left: 25%; bottom: 350px; }
+        .son2 { left: 75%; bottom: 350px; }
+        .daughter { left: 50%; bottom: 500px; transform: translateX(-50%); } /* Centralizado para melhor visualização */
+        .dream1 { left: 15%; bottom: 650px; } /* Ajustado para não colidir com outros */
+        .dream2 { left: 85%; bottom: 650px; } /* Ajustado para não colidir com outros */
+        .dream3 { left: 50%; bottom: 750px; transform: translateX(-50%); } /* Centralizado */
+
+        /* Seção do Quiz */
         .quiz-container {
-            background: url('https://i.imgur.com/Jf1cm6W.jpg') center/cover no-repeat;
-            background-attachment: fixed; /* Parallax effect */
+            background: url('pergaminho2.jpg') center/cover no-repeat;
+            background-attachment: fixed; /* Efeito parallax */
             padding: 60px 40px;
             max-width: 900px;
             margin: 50px auto;
-            color: white; /* Changed text color for contrast */
+            color: white; /* Cor do texto alterada para contraste */
             border-radius: 8px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
             text-align: center;
@@ -313,7 +381,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             font-size: 1.2rem;
             font-weight: bold;
-            display: none; /* Hidden by default */
+            display: none; /* Escondido por padrão */
         }
         .quiz-result h3 {
             color: var(--rust);
@@ -321,7 +389,7 @@
             margin-top: 0;
         }
 
-        /* Footer */
+        /* Rodapé */
         footer {
             background-color: var(--navy);
             color: white;
@@ -329,22 +397,22 @@
             padding: 40px;
             margin-top: 60px;
             position: relative;
-            overflow: hidden; /* For the sailboat animation */
+            overflow: hidden; /* Para a animação do veleiro */
         }
 
         .footer-text {
             position: relative;
-            z-index: 2; /* Keep text above sailboat */
+            z-index: 2; /* Mantém o texto acima do veleiro */
             font-size: 1.1rem;
             margin-bottom: 10px;
         }
 
         .sailboat {
             position: absolute;
-            width: 150px; /* Larger sailboat */
+            width: 150px; /* Veleiro maior */
             height: auto;
             bottom: 20px;
-            left: -200px; /* Start off-screen */
+            left: -200px; /* Começa fora da tela */
             animation: sail 30s linear infinite;
             z-index: 1;
         }
@@ -354,7 +422,7 @@
             100% { transform: translateX(calc(100vw + 200px)); }
         }
 
-        /* Responsive Design */
+        /* Design Responsivo */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -392,13 +460,29 @@
                 width: 95%;
                 font-size: 1rem;
             }
+            /* Ajustes para a árvore da vida em telas menores */
+            .tree-container {
+                height: auto; /* Permite que a altura se ajuste ao conteúdo */
+                padding: 10px; /* Reduz o padding */
+            }
+            .tree-node {
+                position: relative; /* Remove o posicionamento absoluto para fluir normalmente */
+                width: 90%; /* Ocupa mais largura */
+                margin: 20px auto; /* Centraliza e adiciona margem vertical */
+                left: auto;
+                right: auto;
+                transform: none; /* Remove transform para centralização */
+            }
+            .tree-connector {
+                display: none; /* Esconde os conectores em telas pequenas, pois o posicionamento absoluto não funcionará bem */
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Paulo Victor</h1>
-        <div class="subtitle">39 Anos de Sabedoria Náutica</div>
+        <div class="subtitle">Uma Jornada de Sabedoria e Legado</div>
         <div class="scroll-down">↓</div>
     </header>
 
@@ -437,11 +521,11 @@
                 </div>
                 <div class="country-info" id="iran-info">
                     <h3>Irã</h3>
-                    <p>"Raise your words, not voice. It is rain that grows flowers, not thunder." - Rumi</p>
+                    <p>"Eleve suas palavras, não sua voz. É a chuva que faz as flores crescerem, não o trovão." - Rumi</p>
                 </div>
                 <div class="country-info" id="russia-info">
                     <h3>Rússia</h3>
-                    <p>"Above all, don't lie to yourself." - Dostoiévski</p>
+                    <p>"Acima de tudo, não minta para si mesmo." - Dostoiévski</p>
                 </div>
                 <div class="country-info" id="brazil-info">
                     <h3>Brasil</h3>
@@ -486,26 +570,74 @@
             </div>
         </section>
 
-        <section class="quiz-container">
-            <h2>Qual Pensador Você É?</h2>
-            <div id="quiz">
-                <div class="quiz-question" id="q1">
-                    <p>Como você resolveria um conflito naval entre países?</p>
-                    <div class="quiz-options">
-                        <button data-philosopher="Sun Tzu" data-quote="『A suprema arte da guerra é subjugar o inimigo sem lutar.』">Com estratégia militar e astúcia (Sun Tzu)</button>
-                        <button data-philosopher="Confúcio" data-quote="『O homem nobre é justo em seus atos e humilde em suas palavras.』">Com diálogo diplomático e respeito mútuo (Confúcio)</button>
-                        <button data-philosopher="Aristóteles" data-quote="『A raiz da educação é amarga, mas seus frutos são doces.』">Com análise lógica das causas e efeitos (Aristóteles)</button>
+        <section class="section">
+            <h2>Árvore da Vida</h2>
+            <div class="tree-container">
+                <div class="tree">
+                    <div class="tree-node foundation">
+                        <h3>Fundações</h3>
+                        <p>Formado em Direito<br>
+                        Bilíngue (Inglês/Espanhol)<br>
+                        15 anos como Perito Criminal<br>
+                        Ex-Investigador da Polícia Civil</p>
                     </div>
-                </div>
-                <div class="quiz-question" id="q2" style="display: none;">
-                    <p>Qual é o seu principal guia na vida?</p>
-                    <div class="quiz-options">
-                        <button data-philosopher="Nietzsche" data-quote="『Aquilo que não me mata, só me fortalece.』">A busca incessante por superação e o propósito pessoal (Nietzsche)</button>
-                        <button data-philosopher="Rumi" data-quote="『Raise your words, not voice. It is rain that grows flowers, not thunder.』">A conexão espiritual e a beleza intrínseca da existência (Rumi)</button>
-                        <button data-philosopher="Dostoiévski" data-quote="『Acima de tudo, não minta para si mesmo.』">A exploração das profundezas da psique humana e moralidade (Dostoiévski)</button>
+
+                    <div class="tree-node career">
+                        <h3>Carreira</h3>
+                        <p>Especialista em cenas de crime<br>
+                        Conhecimento em geopolítica<br>
+                        Investigador dedicado</p>
+                    </div>
+
+                    <div class="tree-node son1">
+                        <h3>Vinícius</h3>
+                        <p>O primogênito<br>
+                        Herdeiro da paixão por geopolítica<br>
+                        Companheiro de debates filosóficos</p>
+                    </div>
+
+                    <div class="tree-node son2">
+                        <h3>Heitor</h3>
+                        <p>O caçula<br>
+                        Aventureiro como o pai<br>
+                        Futuro navegador?</p>
+                    </div>
+
+                    <div class="tree-node daughter">
+                        <h3>Luiza</h3>
+                        <p>A princesa da família<br>
+                        Fonte de alegria diária<br>
+                        Inspiração para novos sonhos</p>
+                    </div>
+
+                    <div class="tree-node dream1">
+                        <h3><span role="img" aria-label="Veleiro">⛵</span> Volta ao Mundo</h3>
+                        <p>Navegar por todos os oceanos<br>
+                        Visitar portos históricos<br>
+                        Conhecer culturas náuticas</p>
+                    </div>
+
+                    <div class="tree-node dream2">
+                        <h3><span role="img" aria-label="Casa">🏡</span> Lar Próprio</h3>
+                        <p>Construir um porto seguro<br>
+                        Espaço para a família crescer<br>
+                        Jardim com vista para o mar</p>
+                    </div>
+
+                    <div class="tree-node dream3">
+                        <h3><span role="img" aria-label="Globo">🌍</span> Filosofia Viva</h3>
+                        <p>Escrever um livro<br>
+                        Visitar Rússia, China e Irã<br>
+                        Debater com pensadores</p>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <section class="quiz-container">
+            <h2>Qual Pensador Você É?</h2>
+            <div id="quiz">
+                </div>
             <div class="quiz-result" id="quiz-result">
                 <h3>Seu Pensador é: <span id="result-philosopher"></span>!</h3>
                 <p id="result-quote"></p>
@@ -516,226 +648,65 @@
 
     <footer>
         <p class="footer-text">Que os ventos te levem a portos desconhecidos, mas o coração sempre te traga de volta.</p>
-        <img src="https://i.imgur.com/G4lE60Z.png" alt="Sailboat" class="sailboat"> </footer>
+        <img src="veleiro.jpg" alt="Veleiro" class="sailboat">
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
 
     <script>
-        // Smooth scrolling for scroll-down arrow
-        document.querySelector('.scroll-down').addEventListener('click', function() {
-            window.scrollTo({
-                top: document.getElementById('globe-container').offsetTop,
-                behavior: 'smooth'
-            });
-        });
+        // FUNÇÃO PARA CONECTAR OS NÓS DA ÁRVORE COM LINHAS
+        function drawConnectors() {
+            const connectors = [
+                { from: '.foundation', to: '.career' },
+                { from: '.career', to: '.son1' },
+                { from: '.career', to: '.son2' },
+                { from: '.career', to: '.daughter' },
+                { from: '.son1', to: '.dream1' },
+                { from: '.son2', to: '.dream2' },
+                { from: '.daughter', to: '.dream3' }
+            ];
 
-        // ===== THREE.JS GLOBE ===== //
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // Added alpha: true for transparent background
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('globe-container').appendChild(renderer.domElement);
+            const treeElement = document.querySelector('.tree');
+            if (!treeElement) return;
 
-        // Adjust camera position initially
-        camera.position.z = 10;
+            // REMOVE TODOS OS CONECTORES EXISTENTES ANTES DE REDESENHAR
+            document.querySelectorAll('.tree-connector').forEach(line => line.remove());
 
-        // Add a light source for better visibility
-        const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(5, 5, 5).normalize();
-        scene.add(directionalLight);
+            connectors.forEach(conn => {
+                const fromNode = document.querySelector(conn.from);
+                const toNode = document.querySelector(conn.to);
 
-        // Create globe with an updated texture if possible, or use the provided one
-        const globeGeometry = new THREE.SphereGeometry(5, 64, 64);
-        const globeTextureLoader = new THREE.TextureLoader();
-        const globeMaterial = new THREE.MeshPhongMaterial({ // Use MeshPhongMaterial for lighting effects
-            map: globeTextureLoader.load('https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg'),
-            specularMap: globeTextureLoader.load('https://threejs.org/examples/textures/planets/earth_specular_2048.jpg'), // Add specular map for shininess
-            bumpMap: globeTextureLoader.load('https://threejs.org/examples/textures/planets/earth_normal_2048.jpg'), // Add bump map for surface detail
-            bumpScale: 0.1
-        });
-        const globe = new THREE.Mesh(globeGeometry, globeMaterial);
-        scene.add(globe);
+                if (fromNode && toNode) {
+                    const line = document.createElement('div');
+                    line.className = 'tree-connector';
 
-        // OrbitControls for user interaction
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true; // smooth zoom/rotate
-        controls.dampingFactor = 0.05;
-        controls.minDistance = 8;
-        controls.maxDistance = 20;
+                    const fromRect = fromNode.getBoundingClientRect();
+                    const toRect = toNode.getBoundingClientRect();
+                    const treeRect = treeElement.getBoundingClientRect();
 
-        // Responsive globe sizing
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+                    // Calcula as coordenadas relativas ao container .tree
+                    const x1 = fromRect.left + fromRect.width / 2 - treeRect.left;
+                    const y1 = fromRect.top + fromRect.height - treeRect.top; // Base do nó de origem
+                    const x2 = toRect.left + toRect.width / 2 - treeRect.left;
+                    const y2 = toRect.top - treeRect.top; // Topo do nó de destino
 
-        // Animation loop
-        function animateGlobe() {
-            requestAnimationFrame(animateGlobe);
-            globe.rotation.y += 0.001; // Continuous subtle rotation
-            controls.update();
-            renderer.render(scene, camera);
-        }
-        animateGlobe();
+                    const angle = Math.atan2(y2 - y1, x2 - x1);
+                    const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 
-        // ===== MAP MARKERS INTERACTIVITY ===== //
-        const countryMarkers = document.querySelectorAll('.country-marker');
-        const countryInfoBoxes = document.querySelectorAll('.country-info');
+                    line.style.left = `${x1}px`;
+                    line.style.top = `${y1}px`;
+                    line.style.width = `${length}px`;
+                    line.style.transform = `rotate(${angle}rad)`;
 
-        countryMarkers.forEach(marker => {
-            marker.addEventListener('click', function() {
-                const country = this.dataset.country;
-                const infoBox = document.getElementById(`${country}-info`);
-
-                // Hide all other info boxes
-                countryInfoBoxes.forEach(box => {
-                    if (box.id !== `${country}-info`) {
-                        box.style.display = 'none';
-                    }
-                });
-
-                // Toggle display for the clicked info box
-                if (infoBox.style.display === 'block') {
-                    infoBox.style.display = 'none';
-                } else {
-                    infoBox.style.display = 'block';
-                    // Position the info box relative to the marker
-                    const markerRect = this.getBoundingClientRect();
-                    const mapRect = this.closest('.map-container').getBoundingClientRect();
-
-                    infoBox.style.left = `${markerRect.left - mapRect.left + (markerRect.width / 2)}px`;
-                    infoBox.style.top = `${markerRect.top - mapRect.top - infoBox.offsetHeight - 10}px`; // Above the marker
+                    treeElement.appendChild(line);
                 }
             });
-        });
-
-        // Hide info boxes when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideMap = event.target.closest('.map-container');
-            if (!isClickInsideMap) {
-                countryInfoBoxes.forEach(box => {
-                    box.style.display = 'none';
-                });
-            }
-        });
-
-        // ===== PHILOSOPHICAL QUIZ ===== //
-        const quizQuestions = [
-            {
-                question: "Como você resolveria um conflito naval entre países?",
-                options: [
-                    { text: "Com estratégia militar e astúcia", philosopher: "Sun Tzu", quote: "『A suprema arte da guerra é subjugar o inimigo sem lutar.』" },
-                    { text: "Com diálogo diplomático e respeito mútuo", philosopher: "Confúcio", quote: "『O homem nobre é justo em seus atos e humilde em suas palavras.』" },
-                    { text: "Com análise lógica das causas e efeitos", philosopher: "Aristóteles", quote: "『A raiz da educação é amarga, mas seus frutos são doces.』" }
-                ]
-            },
-            {
-                question: "Qual é o seu principal guia na vida?",
-                options: [
-                    { text: "A busca incessante por superação e o propósito pessoal", philosopher: "Nietzsche", quote: "『Aquilo que não me mata, só me fortalece.』" },
-                    { text: "A conexão espiritual e a beleza intrínseca da existência", philosopher: "Rumi", quote: "『Raise your words, not voice. It is rain that grows flowers, not thunder.』" },
-                    { text: "A exploração das profundezas da psique humana e moralidade", philosopher: "Dostoiévski", quote: "『Acima de tudo, não minta para si mesmo.』" }
-                ]
-            }
-        ];
-
-        let currentQuestionIndex = 0;
-        let quizResults = {}; // To store the chosen philosophers
-
-        const quizDiv = document.getElementById('quiz');
-        const quizResultDiv = document.getElementById('quiz-result');
-        const resultPhilosopherSpan = document.getElementById('result-philosopher');
-        const resultQuoteP = document.getElementById('result-quote');
-
-        function loadQuestion() {
-            if (currentQuestionIndex < quizQuestions.length) {
-                const qData = quizQuestions[currentQuestionIndex];
-                let questionHtml = `<div class="quiz-question" id="q${currentQuestionIndex + 1}">
-                                        <p>${qData.question}</p>
-                                        <div class="quiz-options">`;
-                qData.options.forEach((option, index) => {
-                    questionHtml += `<button data-philosopher="${option.philosopher}" data-quote="${option.quote}">${option.text}</button>`;
-                });
-                questionHtml += `</div></div>`;
-                quizDiv.innerHTML = questionHtml;
-
-                document.querySelectorAll('.quiz-options button').forEach(button => {
-                    button.addEventListener('click', handleAnswer);
-                });
-            } else {
-                showResults();
-            }
         }
 
-        function handleAnswer(event) {
-            const chosenPhilosopher = event.target.dataset.philosopher;
-            const chosenQuote = event.target.dataset.quote;
-
-            quizResults[chosenPhilosopher] = (quizResults[chosenPhilosopher] || 0) + 1; // Increment count for chosen philosopher
-
-            currentQuestionIndex++;
-            loadQuestion();
-        }
-
-        function showResults() {
-            let topPhilosopher = '';
-            let maxCount = 0;
-
-            for (const philosopher in quizResults) {
-                if (quizResults[philosopher] > maxCount) {
-                    maxCount = quizResults[philosopher];
-                    topPhilosopher = philosopher;
-                }
-            }
-
-            // If there's a tie, randomly pick one of the tied philosophers
-            const tiedPhilosophers = Object.keys(quizResults).filter(key => quizResults[key] === maxCount);
-            topPhilosopher = tiedPhilosophers[Math.floor(Math.random() * tiedPhilosophers.length)];
-
-            // Find the quote for the determined philosopher
-            let finalQuote = "Sua sabedoria guia seus caminhos.";
-            quizQuestions.forEach(q => {
-                q.options.forEach(opt => {
-                    if (opt.philosopher === topPhilosopher) {
-                        finalQuote = opt.quote;
-                    }
-                });
-            });
-
-            resultPhilosopherSpan.textContent = topPhilosopher;
-            resultQuoteP.textContent = finalQuote;
-            quizDiv.style.display = 'none';
-            quizResultDiv.style.display = 'block';
-        }
-
-        function resetQuiz() {
-            currentQuestionIndex = 0;
-            quizResults = {};
-            quizDiv.style.display = 'block';
-            quizResultDiv.style.display = 'none';
-            loadQuestion();
-        }
-
-        // Initialize the quiz
-        loadQuestion();
-
-        // Sailboat animation (from second code) - Adjusted to be always visible in footer
-        // No need for scroll event for the sailboat if it's purely CSS animated in the footer.
-        // If you want it to react to scroll, uncomment and adapt the original logic:
-        /*
-        window.addEventListener('scroll', function() {
-            const scrollPosition = window.scrollY;
-            const sailboat = document.querySelector('.sailboat');
-            // Example: Make it move based on scroll, but ensure it stays within bounds
-            // This example simply moves it up/down which might not be the desired effect.
-            // sailboat.style.bottom = `${20 + (scrollPosition * 0.05)}px`;
-        });
-        */
-       
+        // Event Listeners para desenhar/redesenhar os conectores da árvore
+        window.addEventListener('load', drawConnectors);
+        window.addEventListener('resize', drawConnectors);
     </script>
     <script src="script.js" defer></script>
 </body>
